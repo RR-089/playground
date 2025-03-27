@@ -1,13 +1,13 @@
-package com.ucok.sprint_app;
+package com.ucok.spring_app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SprintAppApplication {
+public class SpringAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SprintAppApplication.class, args);
+		SpringApplication.run(SpringAppApplication.class, args);
 	}
 
 }
