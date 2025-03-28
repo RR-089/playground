@@ -1,6 +1,6 @@
-package com.ucok.spring_app.repositories;
+package com.ucok.spring_app.repository;
 
-import com.ucok.spring_app.models.Library;
+import com.ucok.spring_app.model.Library;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

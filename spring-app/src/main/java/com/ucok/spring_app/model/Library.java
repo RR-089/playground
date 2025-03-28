@@ -1,4 +1,4 @@
-package com.ucok.spring_app.models;
+package com.ucok.spring_app.model;
 
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
