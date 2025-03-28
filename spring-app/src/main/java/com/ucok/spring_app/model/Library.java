@@ -19,7 +19,6 @@ public class Library {
     @Column(nullable = false, unique = true)
     private String location;
 
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
