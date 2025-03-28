@@ -1,8 +1,8 @@
 package com.ucok.spring_app.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -19,12 +19,12 @@ public class Library {
     @Column(nullable = false, unique = true)
     private String location;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
-    @Column(nullable = false)
+    @UpdateTimestamp
+    @Column()
     private LocalDateTime updatedAt;
 
     public String getId(){
