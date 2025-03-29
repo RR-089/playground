@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/libraries")
@@ -19,17 +20,43 @@ public class LibraryController {
         this.libraryService = libraryService;
     }
 
-    @PostMapping
-    public ResponseEntity<Library> createLibrary(@RequestBody Library library){
-        Library newLibrary = this.libraryService.createLibrary(library);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newLibrary);
-    }
-
     @GetMapping
     public ResponseEntity<List<Library>> getAllLibrary(){
-        List<Library> libraries = this.libraryService.getAllLibrary();
+        List<Library> libraries = libraryService.getAllLibrary();
         return ResponseEntity.ok(libraries);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Library> getLibrary(@PathVariable String id){
+        Optional<Library> foundLibrary = libraryService.getLibrary(id);
+        if(foundLibrary.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.of(foundLibrary);
+    }
+
+    @PostMapping
+    public ResponseEntity<Library> createLibrary(@RequestBody Library library){
+        Library newLibrary = libraryService.createLibrary(library);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newLibrary);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Library> updateLibrary(@PathVariable String id,
+                                                 @RequestBody Library library){
+        Optional<Library> updatedLibrary = libraryService.updateLibrary(id, library);
+
+        if(updatedLibrary.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.of(updatedLibrary);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteLibrary(@PathVariable String id){
+        libraryService.deleteLibrary(id);
+        return ResponseEntity.ok().build();
+    }
 
 }
