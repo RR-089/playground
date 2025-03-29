@@ -2,6 +2,7 @@ package com.ucok.spring_app.controller;
 
 import com.ucok.spring_app.model.Library;
 import com.ucok.spring_app.service.LibraryService;
+import com.ucok.spring_app.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +22,11 @@ public class LibraryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Library>> getAllLibrary(){
+    public ResponseEntity<ApiResponse<List<Library>>> getAllLibrary(){
         List<Library> libraries = libraryService.getAllLibrary();
-        return ResponseEntity.ok(libraries);
+            return ResponseEntity.ok( new ApiResponse<>(HttpStatus.OK.value(),
+                "Fetch " +
+                        "libraries SuccessFul", libraries));
     }
 
     @GetMapping("/{id}")
